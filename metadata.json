@@ -1,0 +1,8 @@
+{
+  "name": "E-Library Neo-Brutalist",
+  "description": "Sistem Informasi Rental Buku / Komik Digital dengan arsitektur decoupled, API server lengkap, autentikasi Bearer Token, dan desain high-contrast Neo-Brutalist.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
