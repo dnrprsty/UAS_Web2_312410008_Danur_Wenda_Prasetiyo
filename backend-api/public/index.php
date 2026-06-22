@@ -67,15 +67,7 @@ if (getcwd() . DIRECTORY_SEPARATOR !== FCPATH) {
 // This is the line that might need to be changed, depending on your folder structure.
 require FCPATH . '../app/Config/Paths.php';
 // ^^^ Change this line if you move your application folder
-// --- FORCE MIGRATION BYPASS ---
-// Cuma jalan pas pertama kali deploy, aman buat CI4 karena dia ngecek tabel 'migrations' dulu
-$migrate = \Config\Services::migrations();
-try {
-    $migrate->latest();
-} catch (\Throwable $e) {
-    // Kalau gagal, diemin aja, jangan bikin app crash
-}
-// ------------------------------
+
 $paths = new Paths();
 
 // LOAD THE FRAMEWORK BOOTSTRAP FILE
