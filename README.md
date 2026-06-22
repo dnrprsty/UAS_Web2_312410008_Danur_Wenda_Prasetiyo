@@ -1,139 +1,83 @@
-# E-Library — Sistem Informasi Rental Buku & Komik Digital
+# E-Library Management System
+*Proyek Akhir UAS Pemrograman Web 2 — Universitas Pelita Bangsa*
 
-**Proyek Akhir Pemrograman Web 2 (UAS)**
+[![CodeIgniter](https://img.shields.io/badge/CodeIgniter-4-EF4223?style=for-the-badge&logo=codeigniter)](https://codeigniter.com/)
+[![VueJS](https://img.shields.io/badge/Vue.js-3-4FC08D?style=for-the-badge&logo=vuedotjs)](https://vuejs.org/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql)](https://www.mysql.com/)
 
----
-
-## Tentang Sistem
-
-E-Library adalah aplikasi web untuk mengelola rental buku dan komik digital. Sistem ini dibangun dengan arsitektur **decoupled** (terpisah), memisahkan backend API dan frontend SPA secara penuh.
-
-- **Backend API** — CodeIgniter 4 (PHP), RESTful API dengan autentikasi token dan CORS filter.
-- **Frontend SPA** — VueJS 3 + Vue Router 4 + Axios + TailwindCSS, desain **Neo-Brutalist** yang responsif dan interaktif.
+Selamat datang di repositori **E-Library**, sebuah sistem informasi manajemen rental buku & komik digital yang dibangun dengan pendekatan *Decoupled Architecture*. Sistem ini memisahkan antara Backend API (CI4) dan Frontend SPA (VueJS 3) untuk performa yang lebih optimal dan *scalability* yang lebih baik.
 
 ---
 
 ## Fitur Utama
+Sistem ini dilengkapi dengan fungsionalitas manajemen data yang komprehensif:
 
-### 🔐 Autentikasi Admin
-- Login admin dengan username & password.
-- Autentikasi berbasis Bearer Token (mock JWT).
-- Endpoint POST/PUT/DELETE dilindungi oleh AuthFilter.
-
-### 📊 Dashboard
-- Statistik total buku, total anggota, pinjaman aktif, dan total pendapatan.
-- Distribusi buku berdasarkan kategori (grafik).
-
-### 📚 Manajemen Buku
-- CRUD buku (tambah, edit, hapus, lihat).
-- Data buku meliputi: judul, penulis, kategori, stok, harga rental, durasi rental, cover URL, deskripsi.
-- Relasi dengan tabel penulis dan kategori.
-
-### ✍️ Manajemen Penulis
-- CRUD penulis (tambah, edit, hapus, lihat).
-- Data penulis: nama, bio.
-
-### 📂 Manajemen Kategori
-- CRUD kategori (tambah, edit, hapus, lihat).
-- Data kategori: nama, slug.
-
-### 👥 Manajemen Anggota
-- CRUD anggota (tambah, edit, hapus, lihat).
-- Data anggota: nama, email, telepon, tipe keanggotaan (Premium/Basic).
-
-### 📖 Manajemen Peminjaman (Loans)
-- CRUD peminjaman (tambah, edit, hapus, lihat).
-- Data peminjaman: anggota, buku, tanggal pinjam, tanggal kembali, status (Active/Returned/Overdue), total biaya.
-- Relasi dengan tabel anggota dan buku.
+* **Autentikasi Admin:** Keamanan terjamin dengan *Bearer Token* dan *Middleware Filter* untuk setiap endpoint sensitif.
+* **Dashboard Statistikal:** Visualisasi data *real-time* mengenai buku, anggota, dan performa peminjaman.
+* **Manajemen Master Data:** CRUD lengkap untuk Buku, Penulis, Kategori, dan Anggota.
+* **Sistem Peminjaman (Loans):** Pelacakan status peminjaman (Active/Returned/Overdue) dengan kalkulasi biaya otomatis.
+* **Neo-Brutalist UI:** Desain antarmuka modern, tajam, dan responsif menggunakan TailwindCSS.
 
 ---
 
-## Arsitektur Sistem
-
-```
-┌─────────────────────┐         ┌─────────────────────────┐
-│   Frontend SPA      │  HTTP   │   Backend API           │
-│   (VueJS 3 +        │ ──────► │   (CodeIgniter 4)       │
-│    TailwindCSS)     │  JSON   │   RESTful API Server    │
-│   index.html        │ ◄────── │   localhost:8080/api    │
-└─────────────────────┘         └───────────┬─────────────┘
-                                            │
-                                            ▼
-                                  ┌─────────────────────┐
-                                  │   MySQL/MariaDB     │
-                                  │   uas_web2_elibrary │
-                                  └─────────────────────┘
-```
-
-### Database Tables
-| Tabel | Deskripsi |
-|-------|-----------|
-| `users` | Akun admin (username, password hash, role) |
-| `books` | Data buku/komik |
-| `authors` | Data penulis |
-| `categories` | Kategori buku |
-| `members` | Data anggota rental |
-| `loans` | Data peminjaman buku |
-
----
-
-## API Endpoints
-
-| Method | Endpoint | Deskripsi | Auth |
-|--------|----------|-----------|------|
-| POST | `/api/auth/login` | Login admin | ❌ |
-| GET | `/api/books` | Daftar buku | ❌ |
-| POST | `/api/books` | Tambah buku | ✅ |
-| PUT | `/api/books/{id}` | Edit buku | ✅ |
-| DELETE | `/api/books/{id}` | Hapus buku | ✅ |
-| GET | `/api/authors` | Daftar penulis | ❌ |
-| POST | `/api/authors` | Tambah penulis | ✅ |
-| PUT | `/api/authors/{id}` | Edit penulis | ✅ |
-| DELETE | `/api/authors/{id}` | Hapus penulis | ✅ |
-| GET | `/api/categories` | Daftar kategori | ❌ |
-| POST | `/api/categories` | Tambah kategori | ✅ |
-| PUT | `/api/categories/{id}` | Edit kategori | ✅ |
-| DELETE | `/api/categories/{id}` | Hapus kategori | ✅ |
-| GET | `/api/members` | Daftar anggota | ❌ |
-| POST | `/api/members` | Tambah anggota | ✅ |
-| PUT | `/api/members/{id}` | Edit anggota | ✅ |
-| DELETE | `/api/members/{id}` | Hapus anggota | ✅ |
-| GET | `/api/loans` | Daftar peminjaman | ❌ |
-| POST | `/api/loans` | Tambah peminjaman | ✅ |
-| PUT | `/api/loans/{id}` | Edit peminjaman | ✅ |
-| DELETE | `/api/loans/{id}` | Hapus peminjaman | ✅ |
-| GET | `/api/dashboard/stats` | Statistik dashboard | ❌ |
-
----
-
-## Tech Stack
-
+## 🛠️ Tech Stack
 | Komponen | Teknologi |
-|----------|-----------|
-| Backend | CodeIgniter 4 (PHP 8.x) |
-| Frontend | VueJS 3, Vue Router 4, Axios |
-| Styling | TailwindCSS (CDN), Neo-Brutalist Design |
-| Database | MySQL / MariaDB |
-| Server | PHP Built-in Dev Server |
+| :--- | :--- |
+| **Backend** | PHP 8.x, CodeIgniter 4 (RESTful API) |
+| **Frontend** | VueJS 3 (SPA), Vue Router, Axios |
+| **Styling** | TailwindCSS (Utility-first) |
+| **Database** | MySQL / MariaDB |
+| **Tools** | Postman (Testing), Git (Version Control) |
 
 ---
 
-## Struktur Repositori
+## Tampilan Antarmuka
+*(Tempatkan screenshot aplikasi lo di sini untuk memberikan gambaran visual kepada user/penguji)*
 
-```
-web/
-├── backend-api/          # CodeIgniter 4 RESTful API
-│   ├── app/
-│   │   ├── Config/       # Konfigurasi (Routes, Database, CORS, Filter)
-│   │   ├── Controllers/  # Controller API (Auth, Books, Authors, dll.)
-│   │   ├── Database/     # Migrations & Seeds
-│   │   └── Filters/      # AuthFilter, CorsFilter
-│   ├── public/           # Entry point (index.php)
-│   └── writable/         # Cache, logs, uploads
-├── frontend-spa/         # VueJS 3 SPA
-│   ├── index.html        # Entry point HTML
-│   ├── app.js            # Vue App & Router
-│   ├── assets/css/       # Custom CSS
-│   └── components/       # Komponen Vue (Login, Dashboard, Home)
-├── GUIDE.md              # Panduan singkat menjalankan proyek
-└── README.md             # Dokumentasi ini
+| Halaman Login | Dashboard Admin |
+| :---: | :---: |
+| 📸 *Insert Image Here* | 📸 *Insert Image Here* |
+
+| Modals Tambah/Edit | Tabel Data Responsif |
+| :---: | :---: |
+| 📸 *Insert Image Here* | 📸 *Insert Image Here* |
+
+---
+
+## Arsitektur Database
+Sistem ini menggunakan relasi database yang terstruktur untuk menjamin integritas data:
+* `users`: Pengelolaan akun admin.
+* `books` & `authors`: Relasi *one-to-many* atau *many-to-many*.
+* `loans`: Penghubung utama antara `members` dan `books`.
+
+> **[LAMPIRKAN SCREENSHOT DATABASE PHPMyAdmin DI SINI]**
+
+---
+
+## Testing API (Postman)
+Berikut adalah bukti autentikasi keamanan API (Error 401 Unauthorized):
+
+> **[LAMPIRKAN SCREENSHOT API ERROR 401 DI SINI]**
+
+---
+
+## Cara Menjalankan Proyek
+1.  **Clone repositori:** `git clone https://github.com/username/UAS_Web2_NIM_Nama.git`
+2.  **Setup Backend:**
+    * Import file `.sql` ke MySQL.
+    * Konfigurasi `.env` di folder `backend-api/`.
+    * Jalankan `php spark serve`.
+3.  **Setup Frontend:**
+    * Masuk ke folder `frontend-spa/`.
+    * Buka `index.html` via Live Server atau hosting lokal.
+4.  **Akses:** Buka `http://localhost:8080` (sesuaikan).
+
+---
+
+## Demo & Presentasi
+* **Live Demo:** [Klik di sini untuk demo]
+* **Video Presentasi:** [Link YouTube lo]
+
+---
+*Dibuat oleh: **DANUR WENDA PRASETIYO** | Universitas Pelita Bangsa*
