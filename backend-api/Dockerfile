@@ -1,16 +1,17 @@
-FROM php:8.1-apache
+# UBAH DARI 8.1 JADI 8.2
+FROM php:8.2-apache
 
-# Install ekstensi yang dibutuhin CI4
+# Install dependencies
 RUN apt-get update && apt-get install -y libicu-dev libzip-dev zip unzip \
     && docker-php-ext-install intl pdo pdo_mysql zip
 
-# Aktifkan mod_rewrite (PENTING buat routing CI4)
+# Aktifkan mod_rewrite
 RUN a2enmod rewrite
 
-# Copy kode lu ke container
+# COPY source code
 COPY . /var/www/html/
 
-# Set permission biar CI4 bisa nulis log
+# SET PERMISSION
 RUN chown -R www-data:www-data /var/www/html/writable
 
 # Setting biar Apache ngarah ke folder public
