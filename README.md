@@ -66,7 +66,7 @@ Sistem ini menggunakan relasi database yang terstruktur untuk menjamin integrita
 ## Testing API (Postman)
 Berikut adalah bukti autentikasi keamanan API (Error 401 Unauthorized):
 
-> **![Tampilan Dashboard](ss/ss1.png)
+> **![Postman](ss/postman.png)
 **
 
 ---
@@ -86,7 +86,6 @@ Berikut adalah bukti autentikasi keamanan API (Error 401 Unauthorized):
 
 ## Demo & Presentasi
 * **Live Demo:** Coming Soon
-* **Video Presentasi:** [Link YouTube lo]
-
+* **Video Demonstrasi:** https://youtu.be/BdqJtT2t4JM?si=56-za11JAPAl0gJh
 ---
 *Dibuat oleh: **DANUR WENDA PRASETIYO** | Universitas Pelita Bangsa*
