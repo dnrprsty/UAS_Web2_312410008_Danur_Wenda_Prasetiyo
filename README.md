@@ -35,13 +35,21 @@ Sistem ini dilengkapi dengan fungsionalitas manajemen data yang komprehensif:
 ## Tampilan Antarmuka
 *(Tempatkan screenshot aplikasi lo di sini untuk memberikan gambaran visual kepada user/penguji)*
 
-| Halaman Login | Dashboard Admin |
-| :---: | :---: |
-| 📸 *Insert Image Here* | 📸 *Insert Image Here* |
+| Halaman Login |
+| :---: |
+| ![Tampilan Dashboard](ss/login.png)
 
-| Modals Tambah/Edit | Tabel Data Responsif |
-| :---: | :---: |
-| 📸 *Insert Image Here* | 📸 *Insert Image Here* |
+| Dashboard Admin |
+| :---: |
+| ![Tampilan Dashboard](ss/transaksi.png)
+
+| Modals Tambah/Edit | 
+| :---: |
+| ![Tampilan Dashboard](ss/edit.png)
+
+| Tabel Data Responsif |
+| :---: |
+| ![Tampilan Dashboard](ss/dashboard.png)
 
 ---
 
@@ -58,7 +66,8 @@ Sistem ini menggunakan relasi database yang terstruktur untuk menjamin integrita
 ## Testing API (Postman)
 Berikut adalah bukti autentikasi keamanan API (Error 401 Unauthorized):
 
-> **[LAMPIRKAN SCREENSHOT API ERROR 401 DI SINI]**
+> **![Tampilan Dashboard](ss/ss1.png)
+**
 
 ---
 
@@ -76,7 +85,7 @@ Berikut adalah bukti autentikasi keamanan API (Error 401 Unauthorized):
 ---
 
 ## Demo & Presentasi
-* **Live Demo:** [Klik di sini untuk demo]
+* **Live Demo:** Coming Soon
 * **Video Presentasi:** [Link YouTube lo]
 
 ---
