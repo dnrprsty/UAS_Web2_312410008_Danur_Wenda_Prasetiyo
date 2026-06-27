@@ -85,7 +85,14 @@ Berikut adalah bukti autentikasi keamanan API (Error 401 Unauthorized):
 ---
 
 ## Demo & Presentasi
-* **Live Demo:** Coming Soon
+### Live Testing
+<p align="center">
+  <a href="https://pinjamkanbukudulule.vercel.app">
+    <img src="https://img.shields.io/badge/Vue.js-Direct to Website-4FC08D?style=for-the-badge&logo=vuedotjs">
+  </a>
+</p>
+
+---
 * **Video Demonstrasi:** https://youtu.be/BdqJtT2t4JM?si=56-za11JAPAl0gJh
 ---
 *Dibuat oleh: **DANUR WENDA PRASETIYO** | Universitas Pelita Bangsa*
