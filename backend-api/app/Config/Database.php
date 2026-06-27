@@ -24,23 +24,20 @@ class Database extends Config
      *
      * @var array<string, mixed>
      */
-   public array $default = [
-    'DSN'      => '',
-    'hostname' => 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
-    'username' => '4YZXLmmkGhWeZk6.root',
-    'password' => 'Oe27dPDazabZmoFm',
-    'database' => 'test',
-    'DBDriver' => 'MySQLi',
-    'DBPrefix' => '',
-    'pConnect' => false,
-    'DBDebug'  => true,
-    'charset'  => 'utf8mb4',
-    'DBCollat' => 'utf8mb4_general_ci',
-    
-    'options' => [
-        25 => ROOTPATH . 'isrgrootx1.pem', // 25 itu nilai asli dari MYSQLI_OPT_SSL_CA
-    ],
-];
+    public array $default = [
+        'DSN'      => '',
+        'hostname' => 'localhost',
+        'username' => 'root',
+        'password' => '',
+        'database' => 'uas_web2_elibrary',
+        'DBDriver' => 'MySQLi',
+        'DBPrefix' => '',
+        'pConnect' => false,
+        'DBDebug'  => true,
+        'charset'  => 'utf8mb4',
+        'DBCollat' => 'utf8mb4_general_ci',
+        'port'     => 3306,
+    ];
 
     //    /**
     //     * Sample database connection for SQLite3.
@@ -190,6 +187,26 @@ class Database extends Config
         // we don't overwrite live data on accident.
         if (ENVIRONMENT === 'testing') {
             $this->defaultGroup = 'tests';
+        }
+
+        // Credentials come from environment / .env so no secrets live in this file.
+        //   - Local dev : database.default.* in backend-api/.env (localhost, no TLS)
+        //   - Production: DB_* env vars injected by the host (Render).
+        if (getenv('DB_HOST')) {
+            $this->default['hostname'] = getenv('DB_HOST');
+            $this->default['username'] = getenv('DB_USER') ?: $this->default['username'];
+            $this->default['password'] = getenv('DB_PASS') ?: '';
+            $this->default['database'] = getenv('DB_NAME') ?: $this->default['database'];
+            $this->default['port']     = (int) (getenv('DB_PORT') ?: 4000);
+        }
+
+        // Managed MySQL providers (TiDB Cloud Serverless, Aiven, ...) require TLS.
+        // When DB_SSL_CA is set, point MYSQLI_OPT_SSL_CA (option index 25) at the
+        // bundled CA file so the encrypted connection can be established.
+        $sslCa = getenv('DB_SSL_CA');
+        if ($sslCa) {
+            $caPath = ($sslCa[0] === '/') ? $sslCa : ROOTPATH . $sslCa;
+            $this->default['options'] = [25 => $caPath];
         }
     }
 }

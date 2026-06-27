@@ -8,7 +8,7 @@ export default {
         <span class="text-6xl">🔌</span>
         <h1 class="font-display font-black text-3xl md:text-4xl uppercase tracking-tighter text-black">Server API Tidak Terhubung</h1>
         <p class="font-mono text-sm text-zinc-600 max-w-md mx-auto">
-          Backend API tidak berjalan. Silakan jalankan server backend CodeIgniter 4 di <code class="bg-black text-white px-2 py-0.5 text-xs">http://localhost:8080</code>.
+          Backend API tidak dapat dihubungi. Pastikan server backend aktif dan URL API sudah benar.
         </p>
         <button 
           @click="fetchData"

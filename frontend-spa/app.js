@@ -23,7 +23,7 @@ export const store = Vue.reactive({
 });
 
 // 2. Global Axios Configurations
-axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.baseURL = window.API_BASE_URL || 'http://localhost:8080';
 
 // Axios Request Interceptor (Inject Authorization Bearer Token)
 axios.interceptors.request.use((config) => {

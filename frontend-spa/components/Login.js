@@ -109,7 +109,7 @@ export default {
       } catch (err) {
         // No response = network/CORS error or backend down
         if (!err.response) {
-          this.error = "Tidak dapat terhubung ke server! Pastikan backend API berjalan di http://localhost:8080";
+          this.error = "Tidak dapat terhubung ke server! Pastikan backend API aktif dan URL-nya benar.";
           window.appInstance.addToast("Koneksi ke server gagal. Jalankan backend API terlebih dahulu.", "error");
         } else {
           this.error = err.response?.data?.error || `Error ${err.response.status}: Username atau Password salah!`;

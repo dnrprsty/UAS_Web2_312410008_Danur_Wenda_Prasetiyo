@@ -1,0 +1,31 @@
+# Render Blueprint for the E-Library backend API (CodeIgniter 4, Docker).
+# Frontend is deployed separately on Vercel. Database is TiDB Cloud Serverless.
+#
+# Secrets (DB_*, APP_BASE_URL) are marked sync:false — set them in the Render
+# dashboard after the service is created (they are NOT stored in this file).
+services:
+  - type: web
+    name: elibrary-api
+    runtime: docker
+    rootDir: backend-api
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: singapore
+    healthCheckPath: /
+    envVars:
+      - key: CI_ENVIRONMENT
+        value: production
+      - key: DB_PORT
+        value: "4000"
+      - key: DB_SSL_CA
+        value: isrgrootx1.pem
+      - key: APP_BASE_URL
+        sync: false
+      - key: DB_HOST
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASS
+        sync: false

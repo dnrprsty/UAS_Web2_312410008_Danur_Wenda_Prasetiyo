@@ -1,0 +1,13 @@
+# Keep the Docker build context small and free of local-only artifacts.
+.git
+.gitignore
+vendor/
+.env
+env
+tests/
+phpunit.dist.xml
+phpunit.xml
+writable/cache/*
+writable/logs/*
+writable/debugbar/*
+writable/session/*

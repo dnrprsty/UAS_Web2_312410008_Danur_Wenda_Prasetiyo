@@ -8,7 +8,7 @@ export default {
         <span class="text-6xl">🔌</span>
         <h1 class="font-display font-black text-3xl md:text-4xl uppercase tracking-tighter text-black">Server API Tidak Terhubung</h1>
         <p class="font-mono text-sm text-zinc-600 max-w-md mx-auto">
-          Backend API tidak berjalan. Silakan jalankan server backend CodeIgniter 4 di <code class="bg-black text-white px-2 py-0.5 text-xs">http://localhost:8080</code>.
+          Backend API tidak dapat dihubungi. Pastikan server backend aktif dan URL API sudah benar.
         </p>
         <button 
           @click="fetchCatalogData"
@@ -172,7 +172,7 @@ export default {
                   class="w-full bg-white neo-border p-2.5 font-mono text-sm rounded-none outline-none appearance-none focus:ring-2 focus:ring-black text-black cursor-pointer transition-all"
                 >
                   <option value="all">Semua Kategori</option>
-                  <option v-for="cat in categories" :key="cat.id" :value="cat.id">👉 {{ cat.name }}</option>
+                  <option v-for="cat in categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 border-l-2 border-black bg-neo-yellow text-black font-sans text-xs">
                   ▼
@@ -191,7 +191,7 @@ export default {
                   class="w-full bg-white neo-border p-2.5 font-mono text-sm rounded-none outline-none appearance-none focus:ring-2 focus:ring-black text-black cursor-pointer transition-all"
                 >
                   <option value="all">Semua Penulis</option>
-                  <option v-for="auth in authors" :key="auth.id" :value="auth.id">✏️ {{ auth.name }}</option>
+                  <option v-for="auth in authors" :key="auth.id" :value="auth.id">{{ auth.name }}</option>
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 border-l-2 border-black bg-neo-yellow text-black font-sans text-xs">
                   ▼
