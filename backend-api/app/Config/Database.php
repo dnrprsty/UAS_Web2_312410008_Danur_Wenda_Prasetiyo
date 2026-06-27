@@ -201,12 +201,17 @@ class Database extends Config
         }
 
         // Managed MySQL providers (TiDB Cloud Serverless, Aiven, ...) require TLS.
-        // When DB_SSL_CA is set, point MYSQLI_OPT_SSL_CA (option index 25) at the
-        // bundled CA file so the encrypted connection can be established.
+        // CodeIgniter's MySQLi driver only forces an encrypted connection (it adds
+        // the MYSQLI_CLIENT_SSL flag) when the `encrypt` array is set — a plain
+        // MYSQLI_OPT_SSL_CA option is NOT enough and the server rejects the
+        // "insecure transport". So when DB_SSL_CA is set, configure `encrypt`.
         $sslCa = getenv('DB_SSL_CA');
         if ($sslCa) {
             $caPath = ($sslCa[0] === '/') ? $sslCa : ROOTPATH . $sslCa;
-            $this->default['options'] = [25 => $caPath];
+            $this->default['encrypt'] = [
+                'ssl_ca'     => $caPath,
+                'ssl_verify' => true,
+            ];
         }
     }
 }
