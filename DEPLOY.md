@@ -82,7 +82,7 @@ git push
    | `DB_USER`      | `xxxxxxxx.root`                                            |
    | `DB_PASS`      | `<password TiDB baru kamu>`                                |
    | `DB_SSL_CA`    | `isrgrootx1.pem`                                           |
-   | `APP_BASE_URL` | `https://elibrary-api.onrender.com` *(URL service ini)*    |
+   | `APP_BASE_URL` | `https://NAMA-SERVICE-KAMU.onrender.com` *(URL service ini)*    |
 
    > `APP_BASE_URL` baru kamu tahu setelah service dibuat. Boleh isi sementara,
    > lalu update setelah dapat URL final, dan **Manual Deploy** ulang.
@@ -94,7 +94,7 @@ Migration membuat tabel kosong. Untuk mengisi data bawaan (admin, buku, dll.),
 panggil endpoint reset-db **satu kali** dari terminal kamu:
 
 ```bash
-curl -X POST https://elibrary-api.onrender.com/api/admin/reset-db \
+curl -X POST https://NAMA-SERVICE-KAMU.onrender.com/api/admin/reset-db \
   -H "Authorization: Bearer mock-jwt-admin-secret-token"
 ```
 
@@ -106,8 +106,8 @@ Respons sukses: `{"success":true,"message":"Database kembali di-seeding ke data 
 
 ### 2d. Tes backend
 ```bash
-curl https://elibrary-api.onrender.com/api/books          # daftar buku (JSON)
-curl https://elibrary-api.onrender.com/api/dashboard/stats # statistik
+curl https://NAMA-SERVICE-KAMU.onrender.com/api/books          # daftar buku (JSON)
+curl https://NAMA-SERVICE-KAMU.onrender.com/api/dashboard/stats # statistik
 ```
 
 ---
@@ -119,7 +119,7 @@ curl https://elibrary-api.onrender.com/api/dashboard/stats # statistik
    window.API_BASE_URL =
      (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
        ? 'http://localhost:8080'
-       : 'https://elibrary-api.onrender.com';   // ← URL backend Render kamu
+       : 'https://NAMA-SERVICE-KAMU.onrender.com';   // ← URL backend Render kamu
    ```
    Commit & push perubahan ini.
 2. Daftar / login di <https://vercel.com> (via GitHub, tanpa kartu).

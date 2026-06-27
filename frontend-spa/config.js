@@ -9,4 +9,4 @@
 window.API_BASE_URL =
   (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
     ? 'http://localhost:8080'
-    : 'https://REPLACE-WITH-YOUR-RENDER-URL.onrender.com';
+    : 'https://uas-web2-312410008-danur-wenda-prasetiyo.onrender.com';
